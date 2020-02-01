@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
@@ -23,6 +24,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(
     private lancamentoService: LancamentoService,
     private errorHandler: ErrorHandlerService,
+    private auth: AuthService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private title: Title
