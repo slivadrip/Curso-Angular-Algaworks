@@ -1,8 +1,9 @@
-import { Pessoa } from './../core/model';
-import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
 
+import 'rxjs/add/operator/toPromise';
+
+import { Pessoa } from './../core/model';
 
 export class PessoaFiltro {
   nome: string;
@@ -10,10 +11,7 @@ export class PessoaFiltro {
   itensPorPagina = 5;
 }
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PessoaService {
 
   pessoasUrl = 'http://localhost:8080/pessoas';
@@ -33,9 +31,7 @@ export class PessoaService {
       params.set('nome', filtro.nome);
     }
 
-
-    return this.http.get(`${this.pessoasUrl}?`,
-        { headers, search: params })
+    return this.http.get(`${this.pessoasUrl}`, { headers, search: params })
       .toPromise()
       .then(response => {
         const responseJson = response.json();
@@ -49,8 +45,6 @@ export class PessoaService {
         return resultado;
       })
   }
-
-
 
   listarTodas(): Promise<any> {
     const headers = new Headers();
@@ -88,6 +82,26 @@ export class PessoaService {
     return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
       .toPromise()
       .then(response => response.json());
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`,
+        JSON.stringify(pessoa), { headers })
+      .toPromise()
+      .then(response => response.json() as Pessoa);
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(response => response.json() as Pessoa);
   }
 
 }

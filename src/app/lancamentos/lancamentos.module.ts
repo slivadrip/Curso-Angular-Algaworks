@@ -1,3 +1,5 @@
+import { PessoasRoutingModule } from './../pessoas/pessoas-routing.module';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +16,6 @@ import {TableModule} from 'primeng/components/table/table';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
@@ -22,8 +23,6 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
   imports: [
     CommonModule,
     FormsModule,
-
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -35,17 +34,13 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     DropdownModule,
 
     CurrencyMaskModule,
-
-    SharedModule
+    LancamentosRoutingModule,
+     SharedModule
   ],
   declarations: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent,
-    LancamentosGridComponent
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }

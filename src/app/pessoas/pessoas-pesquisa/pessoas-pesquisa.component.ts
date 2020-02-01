@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+
 import { ConfirmationService } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -20,11 +22,13 @@ export class PessoasPesquisaComponent  {
   constructor(
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
+    private confirmation: ConfirmationService,
     private toasty: ToastyService,
-    private confirmation: ConfirmationService
-
+    private title: Title
   ) { }
+
   ngOnInit() {
+    this.title.setTitle('Pesquisa de pessoas');
   }
 
   pesquisar(pagina = 0) {
@@ -34,14 +38,14 @@ export class PessoasPesquisaComponent  {
       .then(resultado => {
         this.totalRegistros = resultado.total;
         this.pessoas = resultado.pessoas;
-      }).catch(erro => this.errorHandler.handle(erro));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.pesquisar(pagina);
   }
-
 
   confirmarExclusao(pessoa: any) {
     this.confirmation.confirm({
@@ -52,21 +56,19 @@ export class PessoasPesquisaComponent  {
     });
   }
 
-
   excluir(pessoa: any) {
     this.pessoaService.excluir(pessoa.codigo)
       .then(() => {
         if (this.grid.first === 0) {
           this.pesquisar();
         } else {
-          this.pesquisar();
           this.grid.first = 0;
         }
 
-        this.toasty.success('Lançamento excluído com sucesso!');
-      }).catch(erro => this.errorHandler.handle(erro));
+        this.toasty.success('Pesssoa excluída com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
-
 
   alternarStatus(pessoa: any): void {
     const novoStatus = !pessoa.ativo;
@@ -80,6 +82,5 @@ export class PessoasPesquisaComponent  {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
 
 }

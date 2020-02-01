@@ -48,7 +48,8 @@
             </td>
 
             <td ngClass="col-acoes">
-               <a pButton icon="pi pi-pencil" pTooltip="Editar"  tooltipPosition="top"></a>
+               <a pButton icon="pi pi-pencil" pTooltip="Editar"  tooltipPosition="top"
+               [routerLink]="['/pessoas', p.codigo]"></a>
                <button pButton icon="pi pi-trash" pTooltip="Excluir"  tooltipPosition="top"
                (click)="confirmarExclusao(p)"></button>
             </td>

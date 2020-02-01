@@ -1,3 +1,4 @@
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,13 +14,7 @@ import { HttpModule } from '@angular/http';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
-
-const routes: Routes = [
-  { path: 'lancamentos', component: LancamentosPesquisaComponent },
-  { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
-  { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },
-  { path: 'pessoas', component: PessoasPesquisaComponent }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,11 +26,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpModule,
 
-    RouterModule.forRoot(routes),
-
     CoreModule,
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

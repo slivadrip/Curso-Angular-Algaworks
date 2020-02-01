@@ -14,6 +14,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import localept from '@angular/common/locales/pt';
 import {registerLocaleData} from '@angular/common';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 registerLocaleData(localept, 'pt');
 
 
@@ -25,7 +27,7 @@ registerLocaleData(localept, 'pt');
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [
     NavbarComponent,
     ToastyModule,
@@ -37,6 +39,7 @@ registerLocaleData(localept, 'pt');
     CategoriaService,
     ErrorHandlerService,
 
+    Title,
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
