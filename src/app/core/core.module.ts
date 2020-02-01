@@ -1,3 +1,4 @@
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { AuthService } from './../seguranca/auth.service';
 import { RouterModule } from '@angular/router';
 import { CategoriaService } from './../categorias/categoria.service';
@@ -30,7 +31,10 @@ registerLocaleData(localept, 'pt');
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
-  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
+  declarations: [
+    NavbarComponent,
+     PaginaNaoEncontradaComponent,
+     NaoAutorizadoComponent],
   exports: [
     NavbarComponent,
     ToastyModule,
@@ -42,6 +46,8 @@ registerLocaleData(localept, 'pt');
     CategoriaService,
     ErrorHandlerService,
     AuthService,
+
+    ConfirmationService,
     JwtHelper,
     Title,
     ConfirmationService,
