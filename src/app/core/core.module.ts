@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 import { AuthService } from './../seguranca/auth.service';
 import { RouterModule } from '@angular/router';
@@ -22,17 +23,17 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
 import { Title } from '@angular/platform-browser';
 registerLocaleData(localept, 'pt');
 
-
-
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
     RouterModule,
+
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
   declarations: [
-    NavbarComponent,
+     NavbarComponent,
      PaginaNaoEncontradaComponent,
      NaoAutorizadoComponent],
   exports: [

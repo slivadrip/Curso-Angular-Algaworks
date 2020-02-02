@@ -1,13 +1,15 @@
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
-import { Lancamento } from './../../core/model';
-import { LancamentoService } from './../lancamento.service';
-import { ToastyService } from 'ng2-toasty';
-import { ErrorHandlerService } from './../../core/error-handler.service';
-import { PessoaService } from './../../pessoas/pessoa.service';
-import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+
+import { ToastyService } from 'ng2-toasty';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { CategoriaService } from './../../categorias/categoria.service';
+import { PessoaService } from './../../pessoas/pessoa.service';
+import { Lancamento } from './../../core/model';
+import { LancamentoService } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -20,6 +22,7 @@ export class LancamentoCadastroComponent implements OnInit {
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' },
   ];
+
   categorias = [];
   pessoas = [];
   lancamento = new Lancamento();
@@ -33,8 +36,6 @@ export class LancamentoCadastroComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private title: Title
-
-
   ) { }
 
   ngOnInit() {
@@ -46,7 +47,6 @@ export class LancamentoCadastroComponent implements OnInit {
       this.carregarLancamento(codigoLancamento);
     }
 
-
     this.carregarCategorias();
     this.carregarPessoas();
   }
@@ -54,6 +54,7 @@ export class LancamentoCadastroComponent implements OnInit {
   get editando() {
     return Boolean(this.lancamento.codigo)
   }
+
   carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo)
       .then(lancamento => {
@@ -93,7 +94,6 @@ export class LancamentoCadastroComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
 
   carregarCategorias() {
     return this.categoriaService.listarTodas()
